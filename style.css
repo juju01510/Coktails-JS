@@ -19,3 +19,6 @@ li {
 .close:hover {
     cursor: pointer;
 }
+#btn:hover {
+	cursor: pointer;
+}

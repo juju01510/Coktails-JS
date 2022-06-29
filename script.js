@@ -1,6 +1,6 @@
-// quand on passe sur les élèments de la liste, le curseur change pour que cela soit cliquable
+// Quand on passe sur les élèments de la liste, le curseur change pour que cela soit cliquable
 // Faire en sorte qu'on puisse choisir le cocktail qui s'affiche en bas en cliquant sur les élèments de la liste
-// Permettra à l'utilisateur de changer des élèment de la liste et d'en ajouter
+// Permettre à l'utilisateur de pouvoir ajouter et supprimer des élèments de la liste
 
 const cocktails = document.querySelectorAll("p");
 const lastP = cocktails[cocktails.length - 1];
@@ -43,6 +43,7 @@ cocktails.forEach((cocktail) => {
 dels.forEach((del) => {
 	del.addEventListener("click", () => {
 		del.parentElement.style.display = "none";
+		favCocktail.textContent = "";
 	});
 });
 
@@ -58,6 +59,7 @@ btn.addEventListener("click", () => {
 		dels.forEach((del) => {
 			del.addEventListener("click", () => {
 				del.parentElement.style.display = "none";
+				favCocktail.textContent = "";
 			});
 		});
 
@@ -70,4 +72,3 @@ btn.addEventListener("click", () => {
 		});
 	}
 });
-
