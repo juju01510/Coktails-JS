@@ -8,7 +8,32 @@ const favCocktail = document.getElementById("cocktail");
 const input = document.querySelector("input");
 const btn = document.getElementById("btn");
 const ul = document.querySelector("ul");
-let dels = document.querySelectorAll("span");
+let deletes = document.querySelectorAll("span");
+
+function addCoktail() {
+	let li = document.createElement("li");
+	li.innerHTML = `<p style="cursor: pointer;">${input.value}</p><span class="close" style="background-color: rgb(${randomRgbColor()})">X</span>`;
+	ul.append(li);
+	input.value = "";
+	deletes = document.querySelectorAll("span");
+	deletes.forEach((delet) => {
+		delet.addEventListener("click", () => {
+			delet.parentElement.style.display = "none";
+			favCocktail.textContent = "";
+		});
+	});
+
+	li.addEventListener("click", (e) => {
+		if (e.target.textContent === "X") {
+			return;
+			// } else if (e.target.textContent === e.target.textContent) {
+			// 	return;
+		} else {
+			favCocktail.textContent = e.target.textContent;
+		}
+		console.log(li.textContent);
+	});
+}
 
 function randomInteger(max) {
 	return Math.floor(Math.random() * (max + 1));
@@ -21,8 +46,8 @@ function randomRgbColor() {
 	return [r, g, b];
 }
 
-dels.forEach((del) => {
-	del.style.backgroundColor = `rgb(${randomRgbColor()})`;
+deletes.forEach((delet) => {
+	delet.style.backgroundColor = `rgb(${randomRgbColor()})`;
 });
 
 cocktails.forEach((cocktail) => {
@@ -40,9 +65,9 @@ cocktails.forEach((cocktail) => {
 	});
 });
 
-dels.forEach((del) => {
-	del.addEventListener("click", () => {
-		del.parentElement.style.display = "none";
+deletes.forEach((delet) => {
+	delet.addEventListener("click", () => {
+		delet.parentElement.style.display = "none";
 		favCocktail.textContent = "";
 	});
 });
@@ -51,24 +76,6 @@ btn.addEventListener("click", () => {
 	if (input.value === "") {
 		return;
 	} else {
-		let li = document.createElement("li");
-		li.innerHTML = `<p style="cursor: pointer;">${input.value}</p><span class="close" style="background-color: rgb(${randomRgbColor()})">X</span>`;
-		ul.append(li);
-		input.value = "";
-		dels = document.querySelectorAll("span");
-		dels.forEach((del) => {
-			del.addEventListener("click", () => {
-				del.parentElement.style.display = "none";
-				favCocktail.textContent = "";
-			});
-		});
-
-		li.addEventListener("click", (e) => {
-			if (e.target.textContent === "X") {
-				return;
-			} else {
-				favCocktail.textContent = e.target.textContent;
-			}
-		});
+		addCoktail();
 	}
 });
